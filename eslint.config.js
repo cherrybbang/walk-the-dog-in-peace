@@ -22,5 +22,10 @@ export default defineConfig([
 
   js.configs.recommended,
   ...pluginVue.configs['flat/essential'],
-  skipFormatting,
+  // skipFormatting,
+  {
+    rules: {
+      semi: ['error', 'never'],
+    },
+  },
 ])
