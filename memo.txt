@@ -1,2 +1,27 @@
+
+[프로젝트생성]
 폴더를 따로 만들지 않고 기존 루트 디렉토리 바로 아래에다가 프로젝트 생성하고 싶으면, 아래처럼 명령어 작성하기.
 npm create vue@latest .
+
+[카카오 sdk 불러오기]
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=..."></script>
+카카오 지도 SDK는 npm 패키지로 설치하는게 아니라 HTML <script> 태그로 불러오는 전역 스크립트 방식.
+프로젝트 내부 모듈이 아니고 외부에서 내려오는 JS 코드이기 때문에 script 태그를 삽입해줘야 한다.
+  const script = document.createElement('script')
+  script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${VITE_KAKAO_MAP_KEY}&autoload=false`
+
+그리고, script가 실제로 로드되려면 DOM 트리에 삽입돼야 한다.
+  document.head.appendChild(script)
+
+왜 script 요소를 만들어야 하나? 
+→ 카카오 SDK는 모듈 import 방식이 아니고, script 태그로 불러오는 전역 라이브러리라서.
+
+왜 head.appendChild를 해야 하나? 
+→ script 태그를 DOM에 실제로 붙여야 브라우저가 SDK 파일을 내려받고 실행하기 때문.
+
+
+
+1. ui 만들기
+2. 카카오 맵 api 불러오기
+DB생성, api 만들기
+3. trash bin 정보 불러오기
